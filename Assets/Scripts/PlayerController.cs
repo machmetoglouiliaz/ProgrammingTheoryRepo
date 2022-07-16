@@ -31,17 +31,29 @@ public class PlayerController : MonoBehaviour
 
         if(arrow != null)
         {
-            mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = mouseDistanceToCamera;
-            arrowForceDirection =  mousePosition - arrow.transform.position;
+            CalculateArrowDirection();// ABSTRACTION
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            arrowRb.useGravity = true;
-            Debug.Log(arrowForceDirection + " : " + Input.mousePosition + " " + mousePosition + " : " + arrow.transform.position);
-            arrowRb.AddForce(arrowForceDirection.normalized * arrowForcePower, ForceMode.Impulse);
-            arrow = null;
+            Shoot();// ABSTRACTION
         }
+    }
+
+    // ABSTRACTION
+    private void CalculateArrowDirection()
+    {
+        mousePosition = Input.mousePosition;
+        mousePosition = new Vector3(mousePosition.x, mousePosition.y, mouseDistanceToCamera);
+        mousePosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        arrowForceDirection = mousePosition - arrow.transform.position;
+    }
+
+    // ABSTRACTION
+    private void Shoot()
+    {
+        arrowRb.useGravity = true;
+        arrowRb.AddForce(arrowForceDirection.normalized * arrowForcePower, ForceMode.Impulse);
+        arrow = null;
     }
 }
