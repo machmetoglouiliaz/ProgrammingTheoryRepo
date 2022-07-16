@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 870141139}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -840,7 +840,7 @@ MonoBehaviour:
   arrowPrefab: {fileID: 2665947810785060814, guid: ae20e94931be48345a8998511b0e3d9b, type: 3}
   arrowOffset: {x: 1, y: 1, z: 0}
   arrowForcePower: 20
-  mouseDistanceToCamera: 1
+  mouseDistanceToCamera: 23
 --- !u!1 &1742231174
 GameObject:
   m_ObjectHideFlags: 0
