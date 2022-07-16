@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         mousePosition = new Vector3(mousePosition.x, mousePosition.y, mouseDistanceToCamera);
         mousePosition = mainCamera.ScreenToWorldPoint(mousePosition);
         arrowForceDirection = mousePosition - arrow.transform.position;
+        arrow.transform.rotation = Quaternion.LookRotation(arrowForceDirection);
     }
 
     // ABSTRACTION
