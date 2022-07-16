@@ -30,8 +30,8 @@ public class Arrow : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            other.GetComponent<TargetHandler>().DamageTarget(-150);
         }
-
-
     }
 }
