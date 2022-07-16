@@ -513,4 +513,4 @@ MonoBehaviour:
   arrowPrefab: {fileID: 2665947810785060814, guid: ae20e94931be48345a8998511b0e3d9b, type: 3}
   arrowOffset: {x: 1, y: 1, z: 0}
   arrowForcePower: 20
-  mouseDistanceToCamera: 1
+  mouseDistanceToCamera: 23
