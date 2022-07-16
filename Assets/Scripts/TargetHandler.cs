@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TargetHandler : MonoBehaviour
+public class TargetHandler : MonoBehaviour 
 {
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private Transform damageTextWorldPosition;
 
-    private int overallDamage;
-    private Vector3 dmgTextLocation = new Vector3(925, 38, 0);
-    private Vector3 dmgTextFadeOutLocation = new Vector3(925, 128, 0);
+    public int overallDamage { get; private set; } // ENCAPSULATION
+    private Vector3 dmgFadeOutOffset = new Vector3(0, 2, 0);
 
     // Start is called before the first frame update
     void Start()
     {
         overallDamage = 0;
 
-        Debug.Log(damageText.transform.position);
+        damageText.color = new Color(damageText.color.r, damageText.color.g, damageText.color.b, 0);
     }
 
     // Update is called once per frame
@@ -39,7 +40,11 @@ public class TargetHandler : MonoBehaviour
         float currentTransparency;
         float timer = 0;
         Color textColor = damageText.color;
-        while(timer < 1)
+
+        Vector3 dmgTextLocation = mainCamera.WorldToScreenPoint(damageTextWorldPosition.position);
+        Vector3 dmgTextFadeOutLocation = mainCamera.WorldToScreenPoint(damageTextWorldPosition.position + dmgFadeOutOffset);
+
+        while (timer < 1)
         {
             currentPosition =  Vector3.Lerp(dmgTextLocation, dmgTextFadeOutLocation, timer);
             currentTransparency = Mathf.Lerp(1, 0, timer);
@@ -50,5 +55,7 @@ public class TargetHandler : MonoBehaviour
             timer += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+
+
     }
 }
