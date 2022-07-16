@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private GameObject[] arrowPrefabs;
     [SerializeField] private Vector3 arrowOffset;
     [SerializeField] private float arrowForcePower;
     [SerializeField] private float mouseDistanceToCamera;
@@ -14,18 +14,20 @@ public class PlayerController : MonoBehaviour
     private Rigidbody arrowRb;
     private Vector3 arrowForceDirection;
     private Vector3 mousePosition;
+    private int arrowType;
     // Start is called before the first frame update
     void Start()
     {
-        
+        arrowType = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space)) arrowType =  arrowType == 0 ? 1 : 0;
         if (Input.GetMouseButtonDown(0))
         {
-            arrow = Instantiate(arrowPrefab, transform.position + arrowOffset, arrowPrefab.transform.rotation);
+            arrow = Instantiate(arrowPrefabs[arrowType], transform.position + arrowOffset, arrowPrefabs[arrowType].transform.rotation);
             arrowRb = arrow.GetComponent<Rigidbody>();
         }
 

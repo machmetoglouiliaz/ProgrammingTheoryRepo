@@ -13,13 +13,13 @@ public class FireArrow : Arrow //INHERITANCE
     // Update is called once per frame
     void Update()
     {
-        
+        LookToMovementDirection(); //ABSTRACTION
     }
 
     //POLYMORPHISM
     public override void HitTarget(Collider other)
     {
-        base.HitTarget(other);
+        base.HitTarget(other); //INHERITANCE
         StartCoroutine(DamageOverTime(other));
     }
 

@@ -8,6 +8,7 @@ public class TargetHandler : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private Transform damageTextWorldPosition;
+    [SerializeField] private TextMeshProUGUI overallDamageText;
 
     public int overallDamage { get; private set; } // ENCAPSULATION
     private Vector3 dmgFadeOutOffset = new Vector3(0, 2, 0);
@@ -26,12 +27,19 @@ public class TargetHandler : MonoBehaviour
         
     }
 
+    //ABSTRACTION
     public void DamageTarget(int dmg)
     {
         overallDamage += dmg;
+        UpdateOverallDamageText();
 
         damageText.text = "" + dmg;
         StartCoroutine(DamageTextAnimation());
+    }
+
+    private void UpdateOverallDamageText()
+    {
+        overallDamageText.text = "Overall Damage: " + overallDamage;
     }
 
     private IEnumerator DamageTextAnimation()

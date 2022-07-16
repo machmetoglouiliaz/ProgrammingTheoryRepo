@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
         LookToMovementDirection(); // ABSTRACTION
     }
 
-    private void LookToMovementDirection()
+    public void LookToMovementDirection() 
     {
         Vector3 lookAt = gameObject.GetComponent<Rigidbody>().velocity;
         if (!lookAt.Equals(new Vector3(0, 0, 0)))
@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour
     {
         if (other.CompareTag("Target"))
         {
-            HitTarget(other);
+            HitTarget(other);//ABSTRACTION
         }
     }
 
